@@ -1,5 +1,5 @@
 --
--- File generated with SQLiteStudio v3.2.1 on Sat Dec 12 19:17:45 2020
+-- File generated with SQLiteStudio v3.2.1 on Sun Dec 13 19:57:41 2020
 --
 -- Text encoding used: UTF-8
 --
@@ -48,7 +48,8 @@ CREATE TABLE Staff (id INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT, JobTitle TE
 CREATE TABLE Tags (Id INTEGER PRIMARY KEY, ZIN TEXT, FinalRPG TEXT, WebDevelopment TEXT, GameDevelopment TEXT, PCGaming TEXT, ConsoleGaming TEXT, WebGaming TEXT, "Update" TEXT, "Greedy Salvation" TEXT, VisualNovel TEXT, WebNovel TEXT, LightNovel TEXT, News TEXT);
 
 -- Table: Users
-CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL, password TEXT NOT NULL, Avatar STRING, Role TEXT NOT NULL);
+CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, username STRING NOT NULL, email STRING NOT NULL, password STRING NOT NULL, Avatar STRING, Role TEXT NOT NULL);
+INSERT INTO Users (id, username, email, password, Avatar, Role) VALUES (1, 'FinalBossXD', 'finalb@projectfinalboss.com', 'Alpha5891!', NULL, 'Dev');
 
 -- Table: ZIN
 CREATE TABLE ZIN (Id INTEGER PRIMARY KEY, Home TEXT (0), HomeURL STRING (0), Plot TEXT (0), HomeContent STRING, PlotURL STRING (0), PlotContent STRING, Maps TEXT (0), MapsURL STRING (0), MapsContent STRING, BattleSystem TEXT (0), BattleSystemURL STRING (0), BattleSystemContent STRING, Glossary TEXT (0), GlossaryURL STRING (0), GlossaryContent STRING, Gallery TEXT (0), GalleryURL STRING (0), GalleryContent STRING);
