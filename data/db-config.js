@@ -1,11 +1,6 @@
 const knex = require('knex');
 
-const config = {
-  client: 'sqlite3',
-  connection: {
-    filename: './pfbdata.sql',
-  },
-  useNullAsDefault: true,
-};
+const config = require('../knexfile');
 
-module.exports = knex(config);
+module.exports = knex(config.development);
+
