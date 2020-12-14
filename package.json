@@ -1,11 +1,10 @@
 {
-  "name": "PFBCorp-BackEnd",
+  "name": "PFBCorpBackEnd",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon index.js",
-    "start": "node server.js"
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
