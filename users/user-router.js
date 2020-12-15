@@ -1,7 +1,10 @@
 const express = require("express");
 const users = require('./user-model');
+const bcrypt = require('bcryptjs');
 
 const router = express.Router();
+
+
 
 
 router.get("/", async (req, res) => {
@@ -44,6 +47,10 @@ router.get('/:id/article', async (req, res) => {
 
 router.post("/", async (req, res) => {
   const userData = req.body;
+  const hash = bcrypt.hashSync(userData.password, 12);
+
+  userData.password = hash;
+
   try {
     const newUser = await users.add(userData);
     res.json(newUser);
@@ -53,6 +60,8 @@ router.post("/", async (req, res) => {
   }
 
 });
+
+
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;

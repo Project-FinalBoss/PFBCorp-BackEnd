@@ -3,8 +3,6 @@ const db = require('../data/db-config');
 module.exports = {
     find,
     findById,
-    findByUser,
-    findByTag,
     add,
     update,
     remove
@@ -20,9 +18,9 @@ async function find() {
 
 
 
-async function findById(article_id) {
+async function findById(id) {
     try {
-        const article = await db('article').where({ article_id }).first();
+        const article = await db('article').where({ id }).first();
         return article;
     } catch (err) {
         throw err;
@@ -41,9 +39,9 @@ async function add(articleData) {
 }
 
 
-async function update(article_id, changes) {
+async function update(id, changes) {
     try {
-        await db('article').where({ article_id }).update(changes);
+        await db('article').where({ id }).update(changes);
         return await findById(article_id);
     } catch (err) {
         throw err;
@@ -51,9 +49,9 @@ async function update(article_id, changes) {
 }
 
 
-async function remove(article_id) {
+async function remove(id) {
     try {
-        return await db('article').del().where({ article_id });
+        return await db('article').del().where({ id });
     } catch (err) {
         throw err;
     }

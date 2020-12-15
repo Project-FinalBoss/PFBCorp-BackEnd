@@ -3,6 +3,7 @@ const db = require('../data/db-config');
 module.exports = {
     find,
     findById,
+    findBy,
     findArticle,
     add,
     update,
@@ -42,6 +43,16 @@ async function findById(id) {
     }
 }
 
+
+async function findBy(username){
+    try {
+        const user = await db('users').where({username}).first();
+        return user;
+    } catch (err){
+        throw err;
+    }
+}
+
 //----------------------------------------------------------------------------//
 // findPosts()
 //----------------------------------------------------------------------------//
@@ -55,7 +66,7 @@ async function findArticle(id) {
             db('article as a')
                 .join('users as u', 'u.id', 'a.user_id')
                 .where({ user_id: id })
-                .select('a.id', 'u.username', 'a.article');
+                .select('a.id', 'u.username', 'a.content');
 
         return article;
     } catch (err) {

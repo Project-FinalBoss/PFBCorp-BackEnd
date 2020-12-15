@@ -4,7 +4,7 @@ const articles = require('./article-model');
 const router = express.Router();
 
 
-router.get("/article", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const article = await articles.find();
     res.json(article);
@@ -14,11 +14,11 @@ router.get("/article", async (req, res) => {
   }
 });
 
-router.get("/article/:id", async (req, res) => {
-  const { article_id } = req.params;
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
 
   try {
-    const article = await articles.findById(article_id);
+    const article = await articles.findById(id);
     if (article) {
       res.json(article);
     } else {
@@ -32,7 +32,7 @@ router.get("/article/:id", async (req, res) => {
 
 
 
-router.post("/article", async (req, res) => {
+router.post("/", async (req, res) => {
   const articleData = req.body;
   try {
     const newArticle = await articles.add(articleData);
@@ -44,12 +44,12 @@ router.post("/article", async (req, res) => {
 
 });
 
-router.put("/article/:id", async (req, res) => {
-  const { article_id } = req.params;
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
   const changes = req.body;
 
   try {
-    const changedArticle = await articles.update(article_id, changes);
+    const changedArticle = await articles.update(id, changes);
     if (changedArticle) {
       res.json(changedArticle);
     } else {
@@ -62,10 +62,10 @@ router.put("/article/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  const { article_id } = req.params;
+  const { id } = req.params;
 
   try {
-    const count = await users.remove(article_id);
+    const count = await articles.remove(id);
     if (count) {
       res.json({ message: `deleted ${count} records` });
     } else {
