@@ -16,7 +16,7 @@ module.exports = {
 //----------------------------------------------------------------------------//
 async function find() {
     try {
-        return await db('Users');
+        return await db('users');
     } catch (err) {
         throw err;
     }
@@ -35,7 +35,7 @@ async function find() {
 //----------------------------------------------------------------------------//
 async function findById(id) {
     try {
-        const user = await db('Users').where({ id }).first();
+        const user = await db('users').where({ id }).first();
         return user;
     } catch (err) {
         throw err;
@@ -53,7 +53,7 @@ async function findContent(id) {
     try {
         const content = await
             db('content as c')
-                .join('Users as u', 'u.id', 'c.user_id')
+                .join('users as u', 'u.id', 'c.user_id')
                 .where({ user_id: id })
                 .select('c.id', 'u.username', 'c.content');
 
@@ -73,7 +73,7 @@ async function findContent(id) {
 //----------------------------------------------------------------------------//
 async function add(userData) {
     try {
-        const ids = await db('Users').insert(userData);
+        const ids = await db('users').insert(userData);
         const newUser = await findById(ids[0]);
         return newUser;
     } catch (err) {
@@ -88,7 +88,7 @@ async function add(userData) {
 //----------------------------------------------------------------------------//
 async function update(id, changes) {
     try {
-        await db('Users').where({ id }).update(changes);
+        await db('users').where({ id }).update(changes);
         return await findById(id);
     } catch (err) {
         throw err;
@@ -102,7 +102,7 @@ async function update(id, changes) {
 //----------------------------------------------------------------------------//
 async function remove(id) {
     try {
-        return await db('Users').del().where({ id });
+        return await db('users').del().where({ id });
     } catch (err) {
         throw err;
     }
