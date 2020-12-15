@@ -3,7 +3,7 @@ const db = require('../data/db-config');
 module.exports = {
     find,
     findById,
-    findContent,
+    findArticle,
     add,
     update,
     remove
@@ -49,15 +49,15 @@ async function findById(id) {
 // parameter syntax options you have for the .join() method on the knexjs.org
 // website.
 //----------------------------------------------------------------------------//
-async function findContent(id) {
+async function findArticle(id) {
     try {
-        const content = await
-            db('content as c')
-                .join('users as u', 'u.id', 'c.user_id')
+        const article = await
+            db('article as a')
+                .join('users as u', 'u.id', 'a.user_id')
                 .where({ user_id: id })
-                .select('c.id', 'u.username', 'c.content');
+                .select('a.id', 'u.username', 'a.article');
 
-        return content;
+        return article;
     } catch (err) {
         throw err;
     }

@@ -1,26 +1,26 @@
 const express = require("express");
-const users = require('./user-model');
+const articles = require('./article-model');
 
 const router = express.Router();
 
 
-router.get("/", async (req, res) => {
+router.get("/article", async (req, res) => {
   try {
-    const user = await users.find();
-    res.json(user);
+    const article = await articles.find();
+    res.json(article);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'error with db', error: err });
   }
 });
 
-router.get("/:id", async (req, res) => {
-  const { id } = req.params;
+router.get("/article/:id", async (req, res) => {
+  const { article_id } = req.params;
 
   try {
-    const user = await users.findById(id);
-    if (user) {
-      res.json(user);
+    const article = await articles.findById(article_id);
+    if (article) {
+      res.json(article);
     } else {
       res.status(404).json({ message: 'invalid id' });
     }
@@ -30,23 +30,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.get('/:id/article', async (req, res) => {
-  const { id } = req.params;
 
-  try {
-    const content = await users.findArticle(id);
-    res.json(content);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: 'error with db', error: err });
-  }
-})
 
-router.post("/", async (req, res) => {
-  const userData = req.body;
+router.post("/article", async (req, res) => {
+  const articleData = req.body;
   try {
-    const newUser = await users.add(userData);
-    res.json(newUser);
+    const newArticle = await articles.add(articleData);
+    res.json(newArticle);
   } catch (err) {
     console.log(err);
     res.status(500).json({ message: 'error with db', error: err });
@@ -54,14 +44,14 @@ router.post("/", async (req, res) => {
 
 });
 
-router.put("/:id", async (req, res) => {
-  const { id } = req.params;
+router.put("/article/:id", async (req, res) => {
+  const { article_id } = req.params;
   const changes = req.body;
 
   try {
-    const changedUser = await users.update(id, changes);
-    if (changedUser) {
-      res.json(changedUser);
+    const changedArticle = await articles.update(article_id, changes);
+    if (changedArticle) {
+      res.json(changedArticle);
     } else {
       res.status(404).json({ message: 'invalid id' });
     }
@@ -72,10 +62,10 @@ router.put("/:id", async (req, res) => {
 });
 
 router.delete("/:id", async (req, res) => {
-  const { id } = req.params;
+  const { article_id } = req.params;
 
   try {
-    const count = await users.remove(id);
+    const count = await users.remove(article_id);
     if (count) {
       res.json({ message: `deleted ${count} records` });
     } else {
