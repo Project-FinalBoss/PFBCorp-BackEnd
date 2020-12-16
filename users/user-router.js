@@ -45,20 +45,43 @@ router.get('/:id/article', async (req, res) => {
   }
 })
 
-router.post("/", async (req, res) => {
-  const userData = req.body;
-  const hash = bcrypt.hashSync(userData.password, 12);
 
-  userData.password = hash;
+
+
+router.post('/register', async (req, res) => {
+
+  const user = req.body;
+ 
+  const hash = bcrypt.hashSync(user.password, 8);
+  user.password = hash;
 
   try {
-    const newUser = await users.add(userData);
-    res.json(newUser);
+      const saved = await users.add(user);
+      res.status(201).json(saved);
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: 'error with db', error: err });
+      console.log(err);
+      res.status(500).json(err);
   }
+});
 
+router.post('/login', async (req, res) => {
+  let { username, password } = req.body;
+
+  try {
+      const user = await users.findBy({ username }).first();
+      
+      if (user && bcrypt.compareSync(password, user.password)) {
+     
+          req.session.user = user;
+          res.status(200).json({ message: `Welcome ${user.username}!`, });
+      } else {
+       
+          res.status(401).json({ message: 'invalid credentials' });
+      }
+  } catch (err) {
+
+      res.status(500).json(error);
+  }
 });
 
 
