@@ -5,8 +5,6 @@ const bcrypt = require('bcryptjs');
 const router = express.Router();
 
 
-
-
 router.get("/", async (req, res) => {
   try {
     const user = await users.find();
