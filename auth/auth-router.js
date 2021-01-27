@@ -9,3 +9,13 @@ const jwt = require("jsomwebtoken");
 
 //user query
 const Users = require("../users/user-model")
+
+
+//register router
+
+router.post("/register"), (req, res) => {
+    let creds = req.body:
+    const rounds = process.env.HASH_ROUNDS || 8;
+
+    const hash = bcrypt.hash
+}
