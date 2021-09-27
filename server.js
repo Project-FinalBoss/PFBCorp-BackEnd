@@ -1,33 +1,17 @@
-const express = require("express");
-const helmet = require('helmet');
-const session = require('express-session');
+// const { pool } = require('./data/db-config')
+const express = require("express")
+const app = express()
 
-const UserRouter = require('./users/user-router');
-const ArticleRouter = require('./article/article-router');
+const PORT = process.env.PORT || 9000
 
-const server = express();
-
-const sessionConfig = {
-    name: 'pfbSess',
-    secret: 'FinalChan is a sweetheart lowkey',
-    cookie: 
-    {
-     maxAge:    1000 * 30,
-     secure: false,
-     httpOnly: true
-    },
-    resave: false,
-    saveUninitialize: false
-
-}
-
-server.use(helmet());
-server.use(express.json());
-server.use(session(sessionConfig));
+app.get('/', (req, res) =>{
+    res.send("Hello world")
+})
 
 
-server.use('/api/users', UserRouter);
-server.use('/api/article', ArticleRouter);
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+})
 
 
-module.exports = server;
+

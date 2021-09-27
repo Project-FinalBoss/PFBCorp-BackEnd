@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "node index.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -19,13 +19,9 @@
   },
   "homepage": "https://github.com/Project-FinalBoss/PFBCorp-BackEnd#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "helmet": "^4.2.0",
-    "knex": "^0.21.13",
-    "pg": "^8.7.1",
-    "session": "^0.1.0"
+    "pg": "^8.7.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
