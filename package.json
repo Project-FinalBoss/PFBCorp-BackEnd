@@ -4,8 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon index.js",
-    "start":"node index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -24,10 +24,10 @@
     "express-session": "^1.17.1",
     "helmet": "^4.2.0",
     "knex": "^0.21.13",
-    "session": "^0.1.0",
-    "sqlite3": "^5.0.0"
+    "pg": "^8.7.1",
+    "session": "^0.1.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.13"
   }
 }
