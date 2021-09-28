@@ -1,7 +1,7 @@
 {
   "name": "pfbcorpbackend",
   "version": "1.0.0",
-  "description": "",
+  "description": "User Authentication for Project FinalBoss Corp. Official Websites.",
   "main": "server.js",
   "scripts": {
     "dev": "nodemon server.js",
@@ -19,8 +19,11 @@
   },
   "homepage": "https://github.com/Project-FinalBoss/PFBCorp-BackEnd#readme",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.1"
   },
   "devDependencies": {

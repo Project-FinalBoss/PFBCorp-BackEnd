@@ -1,5 +1,6 @@
 // const { pool } = require('./data/db-config')
 const express = require("express")
+const helmet = require('helmet')
 const app = express()
 
 const UserRouter = require('./users/user-router')
@@ -20,5 +21,5 @@ app.listen(PORT, () => {
 })
 
 
-
+app.use(helmet())
 app.use('/users/user-router', UserRouter)
