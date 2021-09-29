@@ -4,7 +4,7 @@ module.exports = {
     find,
     findById,
     findBy,
-    findArticle,
+    // findArticle,
     add,
     update,
     remove
@@ -35,19 +35,19 @@ async function findBy(filter) {
   }
 
 
-async function findArticle(id) {
-    try {
-        const article = await
-            db('article as a')
-                .join('users as u', 'u.id', 'a.user_id')
-                .where({ user_id: id })
-                .select('a.id', 'u.username', 'a.content')
+// async function findArticle(id) {
+//     try {
+//         const article = await
+//             db('article as a')
+//                 .join('users as u', 'u.id', 'a.user_id')
+//                 .where({ user_id: id })
+//                 .select('a.id', 'u.username', 'a.content')
 
-        return article
-    } catch (err) {
-        throw err
-    }
-}
+//         return article
+//     } catch (err) {
+//         throw err
+//     }
+// }
 
 async function add(userData) {
     try {
