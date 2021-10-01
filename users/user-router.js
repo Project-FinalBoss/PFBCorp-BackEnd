@@ -31,17 +31,17 @@ router.get("/:id", async (req, res) => {
   }
 })
 
-router.get('/:id/article', async (req, res) => {
-  const { id } = req.params
+// router.get('/:id/article', async (req, res) => {
+//   const { id } = req.params
 
-  try {
-    const content = await users.findArticle(id)
-    res.json(content)
-  } catch (err) {
-    console.log(err)
-    res.status(500).json({ message: 'error with db', error: err })
-  }
-})
+//   try {
+//     const content = await users.findArticle(id)
+//     res.json(content)
+//   } catch (err) {
+//     console.log(err)
+//     res.status(500).json({ message: 'error with db', error: err })
+//   }
+// })
 
 
 

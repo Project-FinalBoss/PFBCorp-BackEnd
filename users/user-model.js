@@ -13,7 +13,7 @@ module.exports = {
 
 async function find() {
     try {
-        return await db('users')
+        return await db('test')
     } catch (err) {
         throw err
     }
@@ -21,7 +21,7 @@ async function find() {
 
 async function findById(id) {
     try {
-        const user = await db('users').where({ id }).first()
+        const user = await db('test').where({ id }).first()
         return user
     } catch (err) {
         throw err
@@ -31,7 +31,7 @@ async function findById(id) {
 
 
 async function findBy(filter) {
-    return db("users").where(filter).orderBy("id")
+    return db('test').where(filter).orderBy("userid")
   }
 
 
@@ -51,7 +51,7 @@ async function findBy(filter) {
 
 async function add(userData) {
     try {
-        const ids = await db('users').insert(userData)
+        const ids = await db('test').insert(userData)
         const newUser = await findById(ids[0])
         return newUser
     } catch (err) {
@@ -61,7 +61,7 @@ async function add(userData) {
 
 async function update(id, changes) {
     try {
-        await db('users').where({ id }).update(changes)
+        await db('test').where({ id }).update(changes)
         return await findById(id)
     } catch (err) {
         throw err
@@ -70,7 +70,7 @@ async function update(id, changes) {
 
 async function remove(id) {
     try {
-        return await db('users').del().where({ id })
+        return await db('test').del().where({ id })
     } catch (err) {
         throw err
     }
