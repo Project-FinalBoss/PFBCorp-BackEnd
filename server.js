@@ -14,5 +14,8 @@ app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)
 })
 
+app.get('/users/login', (req, res) => {
+    res.render('logged in.')
+})
 
 app.use(helmet())
